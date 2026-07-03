@@ -1,5 +1,19 @@
 # php server monitor
 
+<br />
+<p align="center">
+  <h2 align="center" style="font-weight: 600">PHP Server Monitor</h2>
+
+  <p align="center">
+    PHP开发的开单服务器探针
+    <br />
+    <a href="/简洁版/README.md"><strong>简洁版安装说明</strong></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/配置文件版/README.md"><strong>配置文件版安装说明</strong></a>&nbsp;&nbsp;
+    <br />
+    <br />
+  </p>
+</p>
+
 php server monitor 是一款轻量级、高性能的服务器状态监控系统，专为多服务器管理场景设计。通过简单的客户端安装，即可实现对所有服务器的CPU、内存、磁盘、网络流量、延迟等核心指标的实时监控与可视化展示。
 ![debian/1.png](public/1.png)
 ![debian/2.png](public/2.png)
