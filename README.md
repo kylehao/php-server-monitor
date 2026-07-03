@@ -7,8 +7,8 @@
   <p align="center">
     PHP开发的开单服务器探针
     <br />
-    <a href="/简洁版/README.md"><strong>简洁版安装说明</strong></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    <a href="/配置文件版/README.md"><strong>配置文件版安装说明</strong></a>&nbsp;&nbsp;
+    <a href="/简洁版/"><strong>简洁版安装说明</strong></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/配置文件版/"><strong>配置文件版安装说明</strong></a>&nbsp;&nbsp;
     <br />
     <br />
   </p>

@@ -35,21 +35,21 @@
 （2）建议设置 Nginx 禁止访问 /data/ 目录，防止数据库文件被下载。
 在你的站点配置中增加：
 
-nginx
-location ^~ /data/ {
-    deny all;
-}
+nginx<br>
+location ^~ /data/ {<br>
+    deny all;<br>
+}<br>
 
 ### 4、安装方法：
 4.1 主控机：新建一个php网站，上传修改好的index.php、report.php、admin.php和data目录
 4.2 被监控机：把上边代码里边install.sh复制到机器上，输入后自动运行，不用再管了。
 
 ### 被监控机上执行命令参考：
-mkdir /opt/phptz
-cd /opt/phptz
-上传文件install.sh到/opt/phptz目录
-chmod +x install.sh
-./install.sh 客户端token的原文
+mkdir /opt/phptz<br>
+cd /opt/phptz<br>
+上传文件install.sh到/opt/phptz目录<br>
+chmod +x install.sh<br>
+./install.sh 客户端token的原文<br>
 
 - 查看服务状态: systemctl status hyruo
 - 查看日志: journalctl -u hyruo -f
