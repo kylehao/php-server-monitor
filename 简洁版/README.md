@@ -1,0 +1,45 @@
+### 1、report.php修改说明
+#### 1.1 修改数据库路径，最好是32位以上随机数
+/data/status_v2_xxxxxxxxxxxxxxxxxxxx.db
+#### 2.2 修改TOKENS
+客户端token的原文，建议随机生成32位随机数
+
+### 2、index.php修改说明
+#### 2.1 修改数据库路径，与report.php中配置一致
+/data/status_v2_xxxxxxxxxxxxxxxxxxxx.db
+#### 2.2 修改节点定义配置，注意MD5值（客户端token原文的MD5值）
+如何获取 MD5：Linux 下执行 echo -n "你的token原文" | md5sum
+
+
+### 3、install.sh修改说明
+#### 3.1 在 install.sh 开头将 API_URL="https://你的域名/report.php" 改为你的实际域名。
+
+#### 建议配置：
+#### （1） Cloudflare WAF（可选但推荐）
+如需限制 /report.php 仅允许你的客户端 IP 访问，可在 Cloudflare 的 WAF 自定义规则中添加类似表达式：
+(http.host eq "你的域名" and http.request.uri.path eq "/report.php" and not ip.src in {1.2.3.4 5.6.7.8}) → Block
+
+#### （2）建议设置 Nginx 禁止访问 /data/ 目录，防止数据库文件被下载。
+在你的站点配置中增加：
+
+nginx
+location ^~ /data/ {
+    deny all;
+}
+文件中的注释已经尽量详尽，其他用户只需按照提示修改数组中的值即可。祝发布顺利！
+
+### 4、安装方法：
+#### 4.1 主控机：新建一个php网站，上传修改好的index.php和report.php即可。
+#### 4.2 被监控机：把上边代码里边install.sh复制到机器上，输入后自动运行，不用再管了。
+
+#### 参考命令：
+mkdir /opt/phptz
+cd /opt/phptz
+上传文件install.sh到/opt/phptz目录
+chmod +x install.sh
+./install.sh 客户端token的原文
+
+- 查看服务状态: systemctl status hyruo
+- 查看日志: journalctl -u hyruo -f
+- 停止服务: systemctl start hyruo
+- 开启服务: systemctl stop hyruo
