@@ -1,0 +1,57 @@
+1、report.php修改说明
+1.1 修改数据库路径，最好是32位以上随机数
+/data/status_v2_xxxxxxxxxxxxxxxxxxxx.db
+1.2 修改配置文件路径，最好是32位以上随机数
+/data/report_xxxxxxxxxxxxxxxxxxxx.json
+1.3 修改data目录下report_xxxxxxxxxxxxxxxxxxxx.json文件名，与report.php中配置一致
+/data/report_xxxxxxxxxxxxxxxxxxxx.json
+
+2、index.php修改说明
+2.1 修改数据库路径，与report.php中配置一致
+/data/status_v2_xxxxxxxxxxxxxxxxxxxx.db
+2.2 修改配置文件路径，最好是32位以上随机数
+/data/config_xxxxxxxxxxxxxxxxxxxx.json
+2.3 修改data目录下config_xxxxxxxxxxxxxxxxxxxx.json文件名，与index.php中配置一致
+/data/config_xxxxxxxxxxxxxxxxxxxx.json
+
+3、install.sh修改说明
+3.1 在 install.sh 开头将 API_URL="https://你的域名/report.php" 改为你的实际域名。
+
+4、admin.php修改说明
+4.1 修改数据库路径，与report.php中配置一致
+/data/status_v2_xxxxxxxxxxxxxxxxxxxx.db
+4.2 修改配置文件config_xxxxxxxxxxxxxxxxxxxx.json路径，与index.php中配置一致.数量较多，可以批量替换
+/data/config_xxxxxxxxxxxxxxxxxxxx.json
+4.3 修改配置文件report_xxxxxxxxxxxxxxxxxxxx.json路径，与report.php中配置一致.数量较多，可以批量替换
+/data/report_xxxxxxxxxxxxxxxxxxxx.json
+4.4 后台默认用户admin，密码admin123
+
+
+建议配置：
+（1） Cloudflare WAF（可选但推荐）
+如需限制 /report.php 仅允许你的客户端 IP 访问，可在 Cloudflare 的 WAF 自定义规则中添加类似表达式：
+(http.host eq "你的域名" and http.request.uri.path eq "/report.php" and not ip.src in {1.2.3.4 5.6.7.8}) → Block
+
+（2）建议设置 Nginx 禁止访问 /data/ 目录，防止数据库文件被下载。
+在你的站点配置中增加：
+
+nginx
+location ^~ /data/ {
+    deny all;
+}
+
+4、安装方法：
+4.1 主控机：新建一个php网站，上传修改好的index.php、report.php、admin.php和data目录
+4.2 被监控机：把上边代码里边install.sh复制到机器上，输入后自动运行，不用再管了。
+
+被监控机上执行命令参考：
+mkdir /opt/phptz
+cd /opt/phptz
+上传文件install.sh到/opt/phptz目录
+chmod +x install.sh
+./install.sh 客户端token的原文
+
+查看服务状态: systemctl status hyruo
+查看日志: journalctl -u hyruo -f
+停止服务: systemctl start hyruo
+开启服务: systemctl stop hyruo

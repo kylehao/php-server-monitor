@@ -1,0 +1,28 @@
+{
+  "servers": [
+    {
+      "name": "绿云",
+      "token_md5": "6ae782f82edf31282ab4ea218bec0d94",
+      "group": "VPS",
+      "group_icon": "fa-globe-asia",
+      "traffic_limit": 1000,
+      "custom_tags": ["新加坡", "AMD 4C12G"],
+      "expire_date": "2027-10-27",
+      "other_tags": ["$33/yr"],
+      "flag": "sg",
+      "sort": 1
+    },
+    {
+      "name": "搬瓦工",
+      "token_md5": "1c24a8f0b947eea5b1c6aa7c096e64a5",
+      "group": "VPS",
+      "group_icon": "fa-globe-asia",
+      "traffic_limit": 1000,
+      "custom_tags": ["美西", "AMD 2C2G"],
+      "expire_date": "2026-12-14",
+      "other_tags": ["$46/yr"],
+      "flag": "us",
+      "sort": 2
+    }
+  ]
+}
